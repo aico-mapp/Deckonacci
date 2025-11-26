@@ -1,0 +1,640 @@
+name: Unity Full Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      job_type:
+        description: 'Job to run'
+        required: true
+        default: 'deploy'
+        type: choice
+        options:
+          - unity_build
+          - deploy
+          
+permissions:
+  contents: write
+  actions: read
+  id-token: write
+
+env:
+  UNITY_VERSION: "6000.0.60f1"
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+  UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+  UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+  UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }} 
+  APP_NAME: ${{ secrets.APP_NAME }}
+  BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
+  TEAM_ID: ${{ secrets.TEAM_ID }}
+  APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+  APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+  APP_STORE_CONNECT_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
+  MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD || 'unity_match_password' }}
+  GITHUB_TOKEN: ${{ github.token }}
+  GITHUB_REPOSITORY: ${{ github.repository }}
+  MATCH_GIT_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
+
+jobs:
+  unity_build:
+    name: Unity Build
+    if: github.event.inputs.job_type != 'deploy'
+    runs-on: macos-14
+    outputs:
+      build_id: ${{ steps.build_id.outputs.id }}
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Generate Build ID
+        id: build_id
+        run: echo "id=$(date +%s)" >> $GITHUB_OUTPUT
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: Library-
+
+      - name: Cache Unity Editor
+        uses: actions/cache@v4
+        with:
+          path: /Applications/Unity/Hub/Editor/${{ env.UNITY_VERSION }}
+          key: Unity-Editor-${{ env.UNITY_VERSION }}
+
+      - name: Setup Ruby and CocoaPods
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          
+      - name: Install CocoaPods
+        run: |
+          gem install cocoapods
+          pod setup
+
+      - name: Select Xcode 16.2
+        run: |
+          sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
+          xcodebuild -version
+
+      - name: Set up Unity
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+        with:
+          targetPlatform: iOS
+          unityVersion: ${{ env.UNITY_VERSION }}
+          buildName: ${{ env.APP_NAME }}
+          allowDirtyBuild: true
+          customParameters: -logFile /dev/stdout
+          buildsPath: build/iOS
+          buildMethod: iOSBuilder.BuildiOS
+          
+      - name: Save Permanent Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-build
+          path: build/iOS
+          retention-days: 90
+
+  deploy:
+    name: Deploy
+    if: github.event.inputs.job_type == 'deploy'
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ github.token }}
+
+      - name: Create Path
+        run: mkdir -p build/iOS
+
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v4
+        with:
+          workflow: ios-build.yml
+          workflow_conclusion: success
+          name: ios-build
+          path: build/iOS
+
+      - name: Select Xcode 16.2
+        run: |
+          sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
+          xcodebuild -version
+
+      - name: Setup Ruby and Bundler for Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+
+      - name: Install Fastlane and dependencies
+        run: |
+          cd build/iOS
+          
+          ruby --version
+          gem --version
+          
+          cat > Gemfile << 'EOF'
+          source "https://rubygems.org"
+          
+          ruby "~> 3.2"
+          
+          gem "fastlane", "~> 2.227"
+          gem "xcodeproj", "~> 1.23"
+          gem "nokogiri", "~> 1.15"
+          EOF
+          
+          gem install bundler:2.5.6
+          bundle config set --local deployment false
+          bundle config set --local path vendor/bundle
+          bundle install --retry=3 --jobs=4
+          bundle exec fastlane --version
+
+      - name: Setup AuthKey for API
+        env:
+          APP_STORE_CONNECT_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+        run: |
+          mkdir -p ~/.appstoreconnect/private_keys
+          echo "$APP_STORE_CONNECT_KEY_CONTENT" > ~/.appstoreconnect/private_keys/AuthKey_${APP_STORE_CONNECT_API_KEY_ID}.p8
+          chmod 600 ~/.appstoreconnect/private_keys/AuthKey_${APP_STORE_CONNECT_API_KEY_ID}.p8
+
+      - name: Create Fastfile for certificate management
+        env:
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+          BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
+          TEAM_ID: ${{ secrets.TEAM_ID }}
+          MATCH_PASSWORD: ${{ env.MATCH_PASSWORD }}
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          MATCH_GIT_URL: ${{ env.MATCH_GIT_URL }}
+        run: |
+          cd build/iOS
+          mkdir -p fastlane
+          
+          echo "app_identifier(\"$BUNDLE_ID\")" > fastlane/Appfile
+          echo "team_id(\"$TEAM_ID\")" >> fastlane/Appfile
+          
+          cat fastlane/Appfile
+          
+          # Создаем Fastfile
+          cat > fastlane/Fastfile << 'EOF'
+          opt_out_usage
+          
+          default_platform(:ios)
+          
+          platform :ios do
+            desc "Setup certificates with match, pause for manual profile creation, then download profiles"
+            lane :sync_certificates do
+              keychain_name = "ios_build_keychain"
+              keychain_password = 'TEst12323'
+
+              delete_keychain(name: keychain_name) rescue nil
+
+              create_keychain(
+                name: keychain_name,
+                password: keychain_password,
+                default_keychain: true,
+                unlock: true,
+                timeout: 3600,
+                lock_when_sleeps: false
+              )
+              
+              key_file_path = "~/.appstoreconnect/private_keys/AuthKey_#{ENV["APP_STORE_CONNECT_API_KEY_ID"]}.p8"
+              
+              unless File.exist?(File.expand_path(key_file_path))
+                raise "App Store Connect API key file missing"
+              end
+              
+              api_key = app_store_connect_api_key(
+                key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
+                issuer_id: ENV["APP_STORE_CONNECT_API_ISSUER_ID"],
+                key_filepath: key_file_path
+              )
+            
+              keychain_name = "ios_build_keychain"
+              keychain_password = 'TEst12323'
+              
+              keychain_full_path = "#{Dir.home}/Library/Keychains/#{keychain_name}"
+              
+              if File.exist?(keychain_full_path)
+                UI.message("Found keychain: #{keychain_full_path}")
+              elsif File.exist?(keychain_full_path + "-db")
+                keychain_full_path = keychain_full_path + "-db"
+                UI.message("Found keychain with -db suffix: #{keychain_full_path}")
+              else
+                UI.error("Keychain file does not exist: #{keychain_full_path}")
+                UI.message("Available keychains:")
+                sh("ls -la ~/Library/Keychains/")
+                raise "Keychain file not found"
+              end
+      
+              begin
+                match(
+                  type: 'appstore',
+                  readonly: false,
+                  skip_provisioning_profiles: true,
+                  keychain_name: keychain_full_path,
+                  keychain_password: keychain_password,
+                  api_key: api_key,
+                  app_identifier: ENV["BUNDLE_ID"],
+                  force_for_new_certificates: true
+                )
+
+                unlock_keychain(
+                  path: keychain_full_path,
+                  password: keychain_password
+                )
+
+                sh("security", "set-key-partition-list", "-S", "apple-tool,apple,codesign", "-k", keychain_password, keychain_full_path)
+
+                identities = sh("security find-identity -v -p codesigning '#{keychain_full_path}' 2>/dev/null || echo 'No identities'")
+                
+                if identities.include?('Apple Distribution') || identities.include?('iPhone Distribution')
+                  UI.success("✅ iOS Distribution certificate found!")
+                else
+                  UI.error("❌ iOS Distribution certificate not found in keychain!")
+                  raise "Distribution certificate not found after match"
+                end
+                
+              rescue => e
+                UI.error("Match failed: #{e.message}")
+                
+                if e.message.include?("No certificate found")
+                  raise "No distribution certificates available"
+                else
+                  raise "Match failed: #{e.message}"
+                end
+              end
+              
+              begin
+                UI.message("Creating provisioning profiles automatically...")
+                
+                keychain_path = "ios_build_keychain"
+                
+                identities = sh("security find-identity -v -p codesigning '#{keychain_path}' 2>/dev/null || echo 'No identities'")
+                
+                if identities.include?('Apple Distribution') || identities.include?('iPhone Distribution')
+
+                  main_profile = sigh(
+                    api_key: api_key,
+                    app_identifier: ENV["BUNDLE_ID"],
+                    readonly: false,
+                    skip_install: false,
+                    platform: "ios"
+                  )
+                  UI.success("Main provisioning profile created/updated: #{main_profile}")
+                  
+                  profiles_dir = File.expand_path("~/Library/MobileDevice/Provisioning Profiles")
+                  main_profile_name = nil
+                  
+                  if Dir.exist?(profiles_dir)
+                    Dir.glob("#{profiles_dir}/*.mobileprovision").each do |profile_path|
+                      profile_content = sh("security cms -D -i '#{profile_path}' 2>/dev/null || echo ''")
+                      
+                      if profile_content.include?(ENV["BUNDLE_ID"]) && !profile_content.include?(".ImageNotification")
+                        if match = profile_content.match(/<key>Name<\/key>\s*<string>([^<]+)<\/string>/)
+                          main_profile_name = match[1]
+                        end
+                      end
+                    end
+                  end
+                  
+                  ENV["MAIN_PROFILE_NAME"] = main_profile_name || "Unknown"
+                  
+                else
+                  raise "No distribution certificates available"
+                end
+                
+              rescue => e
+                raise "Provisioning profiles creation failed: #{e.message}"
+              end
+            end
+          end
+          EOF
+
+      - name: Setup certificates with match and auto-create profile
+        env:
+          CI: true
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+          BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
+          TEAM_ID: ${{ secrets.TEAM_ID }}
+          MATCH_PASSWORD: ${{ env.MATCH_PASSWORD }}
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          MATCH_GIT_URL: ${{ env.MATCH_GIT_URL }}
+        run: |
+          cd build/iOS
+          
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          GIT_URL="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git ls-remote "$GIT_URL" HEAD && echo "✅ Git access successful!" || echo "❌ Git access failed!"
+          
+          echo "MATCH_GIT_URL will be: https://x-access-token:***@github.com/${GITHUB_REPOSITORY}.git"
+
+          bundle exec fastlane sync_certificates
+          
+          security find-identity -v -p codesigning ~/Library/Keychains/ios_build_keychain || echo "No certificates in custom keychain"
+          security find-identity -v -p codesigning || echo "No certificates found anywhere"
+          ls -la ~/Library/MobileDevice/ || echo "MobileDevice directory not found"
+          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/ || echo "No provisioning profiles found"
+
+      - name: Extract provisioning profile name for Xcode configuration
+        env:
+          BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
+        run: |
+          cd build/iOS
+          
+          PROFILES_DIR="$HOME/Library/MobileDevice/Provisioning Profiles"
+          MAIN_PROFILE_NAME=""
+          
+          if [ -d "$PROFILES_DIR" ]; then
+            for profile in "$PROFILES_DIR"/*.mobileprovision; do
+              if [ -f "$profile" ]; then
+                echo "📄 Analyzing profile: $(basename "$profile")"
+
+                PROFILE_CONTENT=$(security cms -D -i "$profile" 2>/dev/null || echo "")
+                
+                if [ ! -z "$PROFILE_CONTENT" ]; then
+                  PROFILE_NAME=$(echo "$PROFILE_CONTENT" | grep -A1 "<key>Name</key>" | grep "<string>" | sed 's/.*<string>\(.*\)<\/string>.*/\1/')
+                  
+                  APP_IDENTIFIER=$(echo "$PROFILE_CONTENT" | grep -A1 "<key>application-identifier</key>" | grep "<string>" | sed 's/.*<string>\(.*\)<\/string>.*/\1/' | head -1)
+                  BUNDLE_ID_FROM_PROFILE=$(echo "$APP_IDENTIFIER" | sed 's/^[^.]*\.//')
+
+                  if [ "$BUNDLE_ID_FROM_PROFILE" = "$BUNDLE_ID" ]; then
+                    MAIN_PROFILE_NAME="$PROFILE_NAME"
+                    echo "  ➡️  This is MAIN APP profile"
+                  fi
+                  echo ""
+                else
+                  echo "  ❌ Could not decode profile"
+                fi
+              fi
+            done
+          fi
+
+          
+          if [ -z "$MAIN_PROFILE_NAME" ]; then
+            echo "❌ ERROR: Main app provisioning profile not found!"
+            echo "Expected bundle ID: $BUNDLE_ID"
+            exit 1
+          fi
+          echo "MAIN_PROFILE_NAME=$MAIN_PROFILE_NAME" >> $GITHUB_ENV
+          
+          echo "✅ Profile name exported to environment:"
+          echo "MAIN_PROFILE_NAME=$MAIN_PROFILE_NAME"
+
+      - name: Install CocoaPods
+        run: |
+          cd build/iOS
+          pod install
+
+      - name: Setup Project Settings
+        env:
+          BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
+          TEAM_ID: ${{ secrets.TEAM_ID }}
+          MAIN_PROFILE_NAME: ${{ env.MAIN_PROFILE_NAME }}
+          APP_NAME: ${{ secrets.APP_NAME }}
+        run: |
+          cd build/iOS
+          
+          cat > Unity-iPhone/Info.plist << EOL
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>CFBundleDevelopmentRegion</key>
+              <string>en</string>
+              <key>CFBundleDisplayName</key>
+              <string>${APP_NAME}</string>
+              <key>CFBundleExecutable</key>
+              <string>\$(EXECUTABLE_NAME)</string>
+              <key>CFBundleIdentifier</key>
+              <string>${BUNDLE_ID}</string>
+              <key>CFBundleInfoDictionaryVersion</key>
+              <string>6.0</string>
+              <key>CFBundleName</key>
+              <string>${APP_NAME}</string>
+              <key>CFBundlePackageType</key>
+              <string>APPL</string>
+              <key>CFBundleShortVersionString</key>
+              <string>1.0</string>
+              <key>CFBundleVersion</key>
+              <string>1</string>
+              <key>LSRequiresIPhoneOS</key>
+              <true/>
+              <key>UIRequiredDeviceCapabilities</key>
+              <array>
+                  <string>armv7</string>
+              </array>
+              <key>UIBackgroundModes</key>
+              <array>
+                <string>fetch</string>
+                <string>remote-notification</string>
+              </array>
+              <key>UIRequiresFullScreen</key>
+              <true/>
+              <key>UISupportedInterfaceOrientations</key>
+              <array>
+                  <string>UIInterfaceOrientationPortrait</string>
+                  <string>UIInterfaceOrientationLandscapeLeft</string>
+                  <string>UIInterfaceOrientationLandscapeRight</string>
+              </array>
+              <key>Unity_LoadingActivityIndicatorStyle</key>
+              <integer>-1</integer>
+              <key>NSUserTrackingUsageDescription</key>
+              <string>This identifier will be used to deliver personalized ads to you.</string>
+              <key>NSLocationWhenInUseUsageDescription</key>
+              <string>This app needs access to location when open.</string>
+              <key>NSLocationAlwaysUsageDescription</key>
+              <string>This app needs access to location when in the background.</string>
+              <key>NSCameraUsageDescription</key>
+              <string>This app needs access to the camera to take photos.</string>
+              <key>NSPhotoLibraryUsageDescription</key>
+              <string>This app needs access to photos to upload images.</string>
+              <key>NSMicrophoneUsageDescription</key>
+              <string>This app needs access to microphone to record audio.</string>
+          </dict>
+          </plist>
+          EOL
+          
+          mkdir -p Unity-iPhone
+          cat > Unity-iPhone/Unity-iPhone.entitlements << EOL
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>aps-environment</key>
+              <string>production</string>
+              <key>com.apple.developer.team-identifier</key>
+              <string>${TEAM_ID}</string>
+              <key>application-identifier</key>
+              <string>${TEAM_ID}.${BUNDLE_ID}</string>
+              <key>get-task-allow</key>
+              <false/>
+          </dict>
+          </plist>
+          EOL
+          
+          gem install xcodeproj -v 1.23.0 --no-document
+          
+          ruby << EOL
+          require 'xcodeproj'
+          project = Xcodeproj::Project.open('Unity-iPhone.xcodeproj')
+          main_target = project.targets.find { |t| t.name == 'Unity-iPhone' }
+          
+          main_target.build_configurations.each do |config|
+            config.build_settings['CODE_SIGN_STYLE'] = 'Manual'
+            config.build_settings['CODE_SIGN_IDENTITY'] = 'iPhone Distribution'
+            config.build_settings['CODE_SIGN_IDENTITY[sdk=iphoneos*]'] = 'iPhone Distribution'
+            config.build_settings['DEVELOPMENT_TEAM'] = ENV['TEAM_ID']
+            config.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = ENV['MAIN_PROFILE_NAME']
+            config.build_settings['CODE_SIGN_ENTITLEMENTS'] = 'Unity-iPhone/Unity-iPhone.entitlements'
+            config.build_settings['ENABLE_PUSH_NOTIFICATIONS'] = 'YES'
+          end
+          
+          app_target_attributes = project.root_object.attributes['TargetAttributes'] || {}
+          main_target_attributes = app_target_attributes[main_target.uuid] || {}
+          system_capabilities = main_target_attributes['SystemCapabilities'] || {}
+          system_capabilities['com.apple.Push'] = { 'enabled' => '1' }
+          main_target_attributes['SystemCapabilities'] = system_capabilities
+          app_target_attributes[main_target.uuid] = main_target_attributes
+          project.root_object.attributes['TargetAttributes'] = app_target_attributes
+          
+          framework_ref = project.frameworks_group.new_reference('System/Library/Frameworks/UserNotifications.framework')
+          main_target.frameworks_build_phase.add_file_reference(framework_ref)
+          
+          project.save
+          EOL
+
+      - name: Update Pods
+        run: |
+          cd build/iOS
+          
+          cat > Podfile << EOF
+          source 'https://cdn.cocoapods.org/'
+          
+          platform :ios, '14.0'
+          
+          target 'UnityFramework' do
+            pod 'Firebase/Analytics', '10.24.0'
+            pod 'Firebase/Auth', '10.24.0'
+            pod 'Firebase/Core', '10.24.0'
+            pod 'Firebase/Database', '10.24.0'
+            pod 'Firebase/Messaging', '10.24.0'
+          end
+          
+          target 'Unity-iPhone' do
+          end
+          
+          use_frameworks! :linkage => :static
+          use_frameworks!
+          
+          post_install do |installer|
+            installer.pods_project.targets.each do |target|
+              target.build_configurations.each do |config|
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+                config.build_settings['ENABLE_BITCODE'] = 'NO'
+                config.build_settings['ARCHS'] = 'arm64'
+                config.build_settings['GENERATE_PRIVACY_MANIFEST'] = 'NO'
+              end
+            end
+          end
+          EOF
+          
+          rm -rf Pods Podfile.lock ~/Library/Developer/Xcode/DerivedData/*
+          pod install --repo-update
+
+      - name: Unlock keychain for build
+        run: |
+          KEYCHAIN_PASSWORD="TEst12323"
+          KEYCHAIN_NAME="$HOME/Library/Keychains/ios_build_keychain"
+          
+          if [ -f "${KEYCHAIN_NAME}-db" ]; then
+            KEYCHAIN_NAME="${KEYCHAIN_NAME}-db"
+          fi
+
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME"
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME"
+          security default-keychain -s "$KEYCHAIN_NAME"
+          security list-keychains -d user -s "$KEYCHAIN_NAME" ~/Library/Keychains/login.keychain-db
+
+      - name: Build and Archive
+        env:
+          TEAM_ID: ${{ secrets.TEAM_ID }}
+          BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
+          MAIN_PROFILE_NAME: ${{ env.MAIN_PROFILE_NAME }}
+        run: |
+          cd build/iOS
+
+          export LATEST_SDK=$(xcodebuild -showsdks | grep 'iphoneos' | sort -V | tail -n 1 | awk '{print $NF}')
+          echo "Using SDK: $LATEST_SDK"
+          
+          xcodebuild -workspace Unity-iPhone.xcworkspace \
+            -scheme Unity-iPhone \
+            -sdk $LATEST_SDK \
+            -configuration Release \
+            -archivePath build/Unity-iPhone.xcarchive \
+            DEVELOPMENT_TEAM="${TEAM_ID}" \
+            OTHER_CODE_SIGN_FLAGS="--keychain ~/Library/Keychains/ios_build_keychain" \
+            clean archive
+              
+          cat << EOF > exportOptions.plist
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>method</key>
+              <string>app-store</string>
+              <key>teamID</key>
+              <string>${TEAM_ID}</string>
+              <key>signingStyle</key>
+              <string>manual</string>
+              <key>provisioningProfiles</key>
+              <dict>
+                  <key>${BUNDLE_ID}</key>
+                  <string>${MAIN_PROFILE_NAME}</string>
+              </dict>
+              <key>signingCertificate</key>
+              <string>iPhone Distribution</string>
+              <key>stripSwiftSymbols</key>
+              <true/>
+              <key>uploadSymbols</key>
+              <true/>
+              <key>compileBitcode</key>
+              <false/>
+              <key>distributionBundleIdentifier</key>
+              <string>${BUNDLE_ID}</string>
+          </dict>
+          </plist>
+          EOF
+          
+          xcodebuild -exportArchive \
+            -archivePath build/Unity-iPhone.xcarchive \
+            -exportOptionsPlist exportOptions.plist \
+            -exportPath build/iOS \
+            -allowProvisioningUpdates
+      
+      - name: Deploy to App Store
+        run: |
+          cd build/iOS/build/ios
+          xcrun altool --upload-app \
+            -f *.ipa \
+            -t ios \
+            --apiKey "${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}" \
+            --apiIssuer "${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}"
+
+      - name: Cleanup
+        if: always()
+        run: |
+          security delete-keychain "$HOME/Library/Keychains/ios_build_keychain" || true
+          rm -rf ~/Library/MobileDevice/Provisioning\ Profiles/* || true
