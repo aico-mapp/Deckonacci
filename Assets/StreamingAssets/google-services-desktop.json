@@ -1,0 +1,32 @@
+{
+  "project_info": {
+    "project_number": "629610208148",
+    "firebase_url": "https://deckonacci-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "deckonacci",
+    "storage_bucket": "deckonacci.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629610208148:ios:87ae83b9bb9c93cdc58d81",
+        "android_client_info": {
+          "package_name": "com.POUR-LA-REEDUCATION-PROF-ET-SOCIALE.Deckonacci"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1GeW2cqWGaZYGQ9i46bWH8O0BpBZkBtc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

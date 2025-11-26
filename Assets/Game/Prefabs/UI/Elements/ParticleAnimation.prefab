@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6710975646060867695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6792911433844694381}
+  - component: {fileID: 7716634493447716066}
+  m_Layer: 5
+  m_Name: ParticleAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6792911433844694381
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6710975646060867695}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.2862735, y: 0.6103697}
+  m_AnchorMax: {x: 0.37756413, y: 0.652}
+  m_AnchoredPosition: {x: 2.5, y: 2}
+  m_SizeDelta: {x: -7, y: -4}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7716634493447716066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6710975646060867695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 624bdd8deaddf4f8ba24ba517db79a5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseRadius: 3
+  radiusVariation: 0.3
+  particlePrefab: {fileID: 1843642816507555453, guid: 97cbe333dc2d146b2a967150b7dee4b2, type: 3}
+  particleCount: 5
+  baseRotationDuration: 5
+  minSpeed: 0.5
+  maxSpeed: 2
+  easeType: 1
+  minScale: 0.5
+  maxScale: 1.5
+  randomizeStartPosition: 1
+  showGizmos: 1
+  showRadiusLabels: 1
+  centerColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  baseRadiusColor: {r: 0, g: 1, b: 0, a: 1}
+  minRadiusColor: {r: 0, g: 1, b: 1, a: 1}
+  maxRadiusColor: {r: 1, g: 0, b: 1, a: 1}
+  centerGizmoSize: 0.3
+  circleSegments: 64

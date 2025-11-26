@@ -1,0 +1,528 @@
+[Info][OPS.OBF][Setup] Active Editor Platform: MacEditorPlatform
+[Info][OPS.OBF][Setup] Active Build Platform: DefaultBuildPlatform
+[Info][OPS.OBF][Setup] Load Project
+[Debug][OPS.OBF][Setup] Load DataContainer
+[Debug][OPS.OBF][Setup] Load Obfuscator Settings
+[Debug][OPS.OBF][Setup] Load Pipeline Components
+[Debug][OPS.OBF][Setup] Found Components (3):
+  - Analyse Unity Animation Methods ()
+  - Analyse Unity Event Component (Analyse Unity Components for UnityEvents. Skip the attached method names.)
+  - Analyse MonoScript ()
+
+[Debug][OPS.OBF][Setup] Load Pipeline
+[Debug][OPS.OBF][Setup] Load Asset Cache
+[Debug][OPS.OBF][Setup] Found Extensions (8):
+  - .fbx
+  - .dae
+  - .3ds
+  - .dxf
+  - .obj
+  - .skp
+  - .anim
+  - .prefab
+
+[Info][OPS.OBF][OnPreBuild] Process component Analyse Unity Animation Methods
+[Info][OPS.OBF][OnPreBuild] Process component Analyse Unity Event Component
+[Info][OPS.OBF][OnPreBuild] Process component Analyse MonoScript
+[Info][OPS.OBF][OnAnalyse_Assets] Process component Analyse Unity Animation Methods
+[Debug][OPS.OBF][OnAnalyse_Assets] Found methods in AnimationClip Assets/Mode/Animations/LoadingView/LoadingView.anim (0):
+
+[Debug][OPS.OBF][OnAnalyse_Assets] Found methods in AnimationClip Packages/com.unity.timeline/Editor/StyleSheets/res/HumanoidDefault.anim (0):
+
+[Debug][OPS.OBF][OnAnalyse_Assets] Found methods in AnimationClip Assets/Mode/Animations/ConnectionView/LostConnectionView.anim (0):
+
+[Debug][OPS.OBF][OnAnalyse_Assets] Found methods in model Packages/com.unity.2d.psdimporter/Editor/Assets/pivot.fbx (0):
+
+[Info][OPS.OBF][OnProcess_Assets] Process component Analyse Unity Animation Methods
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Iterate components in loaded build scene Assets/Mode/Scenes/Mode.unity.
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found 3 Root GameObjects in Scene Assets/Mode/Scenes/Mode.unity
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found 8 Components in Scene Assets/Mode/Scenes/Mode.unity
+[Info][OPS.OBF][OnAnalyse_Component_Scenes] Process component Analyse Unity Event Component
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Starter of type UnityEngine.Transform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Starter of type Mode.Code.Mode.ModeLoadingStarter
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Main Camera of type UnityEngine.Transform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Main Camera of type UnityEngine.Camera
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Main Camera of type UnityEngine.AudioListener
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in EventSystem of type UnityEngine.Transform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in EventSystem of type UnityEngine.EventSystems.EventSystem
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in EventSystem of type UnityEngine.EventSystems.StandaloneInputModule
+[Info][OPS.OBF][OnAnalyse_Component_Scenes] Process component Analyse MonoScript
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference Mode.Code.Mode.ModeLoadingStarter for Starter
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for Starter (1):
+  - Mode.Code.Mode.ModeLoadingStarter
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference UnityEngine.EventSystems.EventSystem for EventSystem
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for EventSystem (1):
+  - UnityEngine.EventSystems.EventSystem
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference UnityEngine.EventSystems.StandaloneInputModule for EventSystem
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for EventSystem (1):
+  - UnityEngine.EventSystems.StandaloneInputModule
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Iterate components in not loaded build scene Assets/Mode/Scenes/Bootstrapp.unity.
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found 4 Root GameObjects in Scene Assets/Mode/Scenes/Bootstrapp.unity
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found 31 Components in Scene Assets/Mode/Scenes/Bootstrapp.unity
+[Info][OPS.OBF][OnAnalyse_Component_Scenes] Process component Analyse Unity Event Component
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Bootstrapper of type UnityEngine.Transform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Bootstrapper of type Mode.Code.Common.Bootstrap.AppBootstrapper
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Main Camera of type UnityEngine.Transform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Main Camera of type UnityEngine.Camera
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Main Camera of type UnityEngine.AudioListener
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in LoadingScreenView of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in LoadingScreenView of type UnityEngine.Canvas
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in LoadingScreenView of type UnityEngine.UI.CanvasScaler
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in LoadingScreenView of type UnityEngine.UI.GraphicRaycaster
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in LoadingScreenView of type UnityEngine.CanvasRenderer
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in LoadingScreenView of type Mode.Code.View.LoadingView.LoadingScreenView
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Content of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Content of type UnityEngine.CanvasRenderer
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Content of type UnityEngine.UI.Image
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in LoadingView of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in LoadingView of type UnityEngine.Canvas
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in LoadingAnimation of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in LoadingAnimation of type UnityEngine.CanvasRenderer
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in LoadingAnimation of type UnityEngine.UI.Image
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in LoadingAnimation of type UnityEngine.Animator
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in ConnectionLostView of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in ConnectionAnimation of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in ConnectionAnimation of type UnityEngine.CanvasRenderer
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in ConnectionAnimation of type UnityEngine.UI.Image
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in ConnectionAnimation of type UnityEngine.Animator
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in ConnectionText of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in ConnectionText of type UnityEngine.CanvasRenderer
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in ConnectionText of type TMPro.TextMeshProUGUI
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in EventSystem of type UnityEngine.Transform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in EventSystem of type UnityEngine.EventSystems.EventSystem
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in EventSystem of type UnityEngine.EventSystems.StandaloneInputModule
+[Info][OPS.OBF][OnAnalyse_Component_Scenes] Process component Analyse MonoScript
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference Mode.Code.Common.Bootstrap.AppBootstrapper for Bootstrapper
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for Bootstrapper (1):
+  - Mode.Code.Common.Bootstrap.AppBootstrapper
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference UnityEngine.UI.CanvasScaler for LoadingScreenView
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for LoadingScreenView (1):
+  - UnityEngine.UI.CanvasScaler
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference UnityEngine.UI.GraphicRaycaster for LoadingScreenView
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for LoadingScreenView (1):
+  - UnityEngine.UI.GraphicRaycaster
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference Mode.Code.View.LoadingView.LoadingScreenView for LoadingScreenView
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for LoadingScreenView (1):
+  - Mode.Code.View.LoadingView.LoadingScreenView
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference UnityEngine.UI.Image for Content
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for Content (1):
+  - UnityEngine.UI.Image
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference UnityEngine.UI.Image for LoadingAnimation
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for LoadingAnimation (1):
+  - UnityEngine.UI.Image
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference UnityEngine.UI.Image for ConnectionAnimation
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for ConnectionAnimation (1):
+  - UnityEngine.UI.Image
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference TMPro.TextMeshProUGUI for ConnectionText
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for ConnectionText (1):
+  - TMPro.TextMeshProUGUI
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference UnityEngine.EventSystems.EventSystem for EventSystem
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for EventSystem (1):
+  - UnityEngine.EventSystems.EventSystem
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference UnityEngine.EventSystems.StandaloneInputModule for EventSystem
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for EventSystem (1):
+  - UnityEngine.EventSystems.StandaloneInputModule
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Iterate components in not loaded build scene Assets/Game.unity.
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found 3 Root GameObjects in Scene Assets/Game.unity
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found 13 Components in Scene Assets/Game.unity
+[Info][OPS.OBF][OnAnalyse_Component_Scenes] Process component Analyse Unity Event Component
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Main Camera of type UnityEngine.Transform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Main Camera of type UnityEngine.Camera
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Main Camera of type UnityEngine.AudioListener
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Canvas of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Canvas of type UnityEngine.Canvas
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Canvas of type UnityEngine.UI.CanvasScaler
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in Canvas of type UnityEngine.UI.GraphicRaycaster
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in GameText of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in GameText of type UnityEngine.CanvasRenderer
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in GameText of type UnityEngine.UI.Text
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in EventSystem of type UnityEngine.Transform
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in EventSystem of type UnityEngine.EventSystems.EventSystem
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Find unity event methods in EventSystem of type UnityEngine.EventSystems.StandaloneInputModule
+[Info][OPS.OBF][OnAnalyse_Component_Scenes] Process component Analyse MonoScript
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference UnityEngine.UI.CanvasScaler for Canvas
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for Canvas (1):
+  - UnityEngine.UI.CanvasScaler
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference UnityEngine.UI.GraphicRaycaster for Canvas
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for Canvas (1):
+  - UnityEngine.UI.GraphicRaycaster
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference UnityEngine.UI.Text for GameText
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for GameText (1):
+  - UnityEngine.UI.Text
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference UnityEngine.EventSystems.EventSystem for EventSystem
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for EventSystem (1):
+  - UnityEngine.EventSystems.EventSystem
+
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference UnityEngine.EventSystems.StandaloneInputModule for EventSystem
+[Debug][OPS.OBF][OnAnalyse_Component_Scenes] Found mono script reference in serialized properties for EventSystem (1):
+  - UnityEngine.EventSystems.StandaloneInputModule
+
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found 4 Prefabs.
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found 31 Components in the prefabs.
+[Info][OPS.OBF][OnAnalyse_Component_Prefabs] Process component Analyse Unity Event Component
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in Closed Sprite Shape of type UnityEngine.Transform
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in Closed Sprite Shape of type UnityEngine.U2D.SpriteShapeRenderer
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in Closed Sprite Shape of type UnityEngine.U2D.SpriteShapeController
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in InternetStatusWorker of type UnityEngine.Transform
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in InternetStatusWorker of type Mode.DTT.Connection_Status.Runtime.InternetStatusWorker
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in LoadingScreenView of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in LoadingScreenView of type UnityEngine.Canvas
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in LoadingScreenView of type UnityEngine.UI.CanvasScaler
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in LoadingScreenView of type UnityEngine.UI.GraphicRaycaster
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in LoadingScreenView of type UnityEngine.CanvasRenderer
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in LoadingScreenView of type Mode.Code.View.LoadingView.LoadingScreenView
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in Content of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in Content of type UnityEngine.CanvasRenderer
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in Content of type UnityEngine.UI.Image
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in LoadingView of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in LoadingView of type UnityEngine.Canvas
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in LoadingAnimation of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in LoadingAnimation of type UnityEngine.CanvasRenderer
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in LoadingAnimation of type UnityEngine.UI.Image
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in LoadingAnimation of type UnityEngine.Animator
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in ConnectionLostView of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in ConnectionAnimation of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in ConnectionAnimation of type UnityEngine.CanvasRenderer
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in ConnectionAnimation of type UnityEngine.UI.Image
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in ConnectionAnimation of type UnityEngine.Animator
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in ConnectionText of type UnityEngine.RectTransform
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in ConnectionText of type UnityEngine.CanvasRenderer
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in ConnectionText of type TMPro.TextMeshProUGUI
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in Open Sprite Shape of type UnityEngine.Transform
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in Open Sprite Shape of type UnityEngine.U2D.SpriteShapeRenderer
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Find unity event methods in Open Sprite Shape of type UnityEngine.U2D.SpriteShapeController
+[Info][OPS.OBF][OnAnalyse_Component_Prefabs] Process component Analyse MonoScript
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference UnityEngine.U2D.SpriteShapeController for Closed Sprite Shape
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference in serialized properties for Closed Sprite Shape (1):
+  - UnityEngine.U2D.SpriteShapeController
+
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference Mode.DTT.Connection_Status.Runtime.InternetStatusWorker for InternetStatusWorker
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference in serialized properties for InternetStatusWorker (1):
+  - Mode.DTT.Connection_Status.Runtime.InternetStatusWorker
+
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference UnityEngine.UI.CanvasScaler for LoadingScreenView
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference in serialized properties for LoadingScreenView (1):
+  - UnityEngine.UI.CanvasScaler
+
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference UnityEngine.UI.GraphicRaycaster for LoadingScreenView
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference in serialized properties for LoadingScreenView (1):
+  - UnityEngine.UI.GraphicRaycaster
+
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference Mode.Code.View.LoadingView.LoadingScreenView for LoadingScreenView
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference in serialized properties for LoadingScreenView (1):
+  - Mode.Code.View.LoadingView.LoadingScreenView
+
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference UnityEngine.UI.Image for Content
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference in serialized properties for Content (1):
+  - UnityEngine.UI.Image
+
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference UnityEngine.UI.Image for LoadingAnimation
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference in serialized properties for LoadingAnimation (1):
+  - UnityEngine.UI.Image
+
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference UnityEngine.UI.Image for ConnectionAnimation
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference in serialized properties for ConnectionAnimation (1):
+  - UnityEngine.UI.Image
+
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference TMPro.TextMeshProUGUI for ConnectionText
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference in serialized properties for ConnectionText (1):
+  - TMPro.TextMeshProUGUI
+
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference UnityEngine.U2D.SpriteShapeController for Open Sprite Shape
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Found mono script reference in serialized properties for Open Sprite Shape (1):
+  - UnityEngine.U2D.SpriteShapeController
+
+[Info][OPS.OBF][OnAnalyse_Component_Prefabs] Unload Project
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Unload Asset Cache
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Unload Pipeline
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Unload Pipeline Components
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Unload Obfuscator Settings
+[Debug][OPS.OBF][OnAnalyse_Component_Prefabs] Unload DataContainer
+[Info][OPS.OBF][OnAnalyse_Component_Prefabs] Finished PreBuild!
+[Info][OPS.OBF][Setup] Active Editor Platform: MacEditorPlatform
+[Info][OPS.OBF][Setup] Active Build Platform: DefaultBuildPlatform
+[Info][OPS.OBF][Setup] Start 'PostAssemblyBuild' process.
+[Info][OPS.OBF][Setup] Load
+[Debug][OPS.OBF][Setup] Load DataContainer
+[Debug][OPS.OBF][Setup] Load ObfuscatorSettings
+[Debug][OPS.OBF][Setup] Load Components
+[Debug][OPS.OBF][Setup] Found Components (26):
+  - Assembly - Settings (Manage obfuscateable assemblies and their dependencies.)
+  - Unity Animation Methods - Compatibility (Manages the obfuscation of inspector set animation methods.)
+  - Unity Event Methods - Compatibility (Manages the obfuscation of inspector set unity event methods.)
+  - String Reflection and Coroutine - Compatibility (Manage the obfuscation of members called through strings.)
+  - Logging - Settings (Manage here the obfuscation logging.)
+  - Namespace - Settings (Manage the obfuscation of namespaces and their class content.)
+  - Class - Obfuscation (Activate and manage the obfuscation of classes and their content.)
+  - Type Cache Replacement (Replaces the types and namespace in the assemblies cache.)
+  - MonoBehaviour - Class - Obfuscation (Manages the MonoBehaviour Subclass obfuscation.)
+  - MonoBehaviour - Class - Subtype Obfuscation (Manages the MonoBehaviour Subclass obfuscation.)
+  - ScriptableObject - Class - Obfuscation (Manages the ScriptableObject Subclass obfuscation.)
+  - Playable - Class - Obfuscation (Manages the Playable Subclass obfuscation.)
+  - Method - Obfuscation (Activate and manage the obfuscation of methods.)
+  - Parameter - Obfuscation (Manage the obfuscation of parameter.)
+  - Field - Obfuscation (Activate and manage the obfuscation of fields.)
+  - Property - Obfuscation (Activate and manage the obfuscation of properties.)
+  - Event - Obfuscation (Activate and manage the obfuscation of events.)
+  - Attribute - Settings (Manage here obfuscator attributes or custom attributes.)
+  - Renaming - Settings (Manage here the renaming settings.)
+  - Add Random Code (Activate to add random code to your classes.)
+  - Method ControlFlow (Obfuscate the methods control flow. (Beta, and requires .Net >= 5 or .Net Standard >= 2.1))
+  - String - Obfuscation (Activate the obfuscation of strings.)
+  - Suppress ILDasm (Add the SuppressIldasmAttribute to prevent ILDasm (Debugging) usage.)
+  - Tampering - Protection (Protection against assembly manipulation.  (Beta))
+  - Not Obfuscate Cause (Adds a do not obfuscate cause attribute to the members.)
+  - Remove Obfuscator Attributes (Removes OPS.Obfuscator.Attributes in the build.)
+
+[Debug][OPS.OBF][Setup] Found Compatibility Components (10):
+  - .Net Framework - Compatibility (Controls the Obfuscator compatibility to the .Net / Mono Framework.)
+  - Unity - Compatibility (Controls the Obfuscator compatibility to Unity.)
+  - Obfuscator - Compatibility (Controls the Obfuscator own components)
+  - Chartboost - Compatibility (Controls the Obfuscator compatibility to Chartboost.)
+  - Meta - Compatibility (Controls the Obfuscator compatibility to Meta Sdks.)
+  - Google - Compatibility (Controls the Obfuscator compatibility to Google Sdks.)
+  - JSON - Compatibility (Controls the Obfuscator compatibility to Json.)
+  - Photon - Compatibility (Controls the Obfuscator compatibility to Photon Sdks.)
+  - PlayMaker - Compatibility (Controls the Obfuscator compatibility to PlayMaker Sdks.)
+  - PlayFab - Compatibility (Controls the Obfuscator compatibility to PlayFab Sdks.)
+
+[Debug][OPS.OBF][Setup] Load Pipeline
+[Debug][OPS.OBF][Setup] Found to obfuscate assemblies (0):
+
+[Debug][OPS.OBF][Setup] Found helper assemblies (0):
+
+[Debug][OPS.OBF][Setup] Found dependency directories (31):
+  - /Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos
+  - /Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/Managed/UnityEngine
+  - /Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos/Facades
+  - /Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/Managed
+  - /Applications/Unity/Hub/Editor/2022.3.22f1/PlaybackEngines/WebGLSupport
+  - /Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport
+  - /Applications/Unity/Hub/Editor/2022.3.22f1/PlaybackEngines/AndroidPlayer
+  - /Applications/Unity/Hub/Editor/2022.3.22f1/PlaybackEngines/iOSSupport
+  - /Users/v.pisarev/Unity Projects/WebView Module/Library/ScriptAssemblies
+  - /Users/v.pisarev/Unity Projects/WebView Module/Assets/Firebase/Plugins
+  - /Users/v.pisarev/Unity Projects/WebView Module/Library/PackageCache/com.unity.burst@1.8.12/Unity.Burst.CodeGen
+  - /Users/v.pisarev/Unity Projects/WebView Module/Library/PackageCache/com.unity.collections@1.2.4/Unity.Collections.LowLevel.ILSupport
+  - /Users/v.pisarev/Unity Projects/WebView Module/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom
+  - /Users/v.pisarev/Unity Projects/WebView Module/Assets/OPS/Editor/Plugins/Mono.Cecil
+  - /Users/v.pisarev/Unity Projects/WebView Module/Assets/ExternalDependencyManager/Editor/1.2.179
+  - /Users/v.pisarev/Unity Projects/WebView Module/Library/PackageCache/com.unity.collab-proxy@2.3.1/Lib/Editor/PlasticSCM
+  - /Users/v.pisarev/Unity Projects/WebView Module/Assets/Firebase/Editor
+  - /Users/v.pisarev/Unity Projects/WebView Module/Assets/OPS/Obfuscator/Editor/Plugins
+  - /Users/v.pisarev/Unity Projects/WebView Module/Assets/OPS/Editor/Plugins/OPS.Assets.Editor
+  - /Users/v.pisarev/Unity Projects/WebView Module/Library/PackageCache/com.unity.burst@1.8.12
+  - /Users/v.pisarev/Unity Projects/WebView Module/Library/PackageCache/com.unity.ide.rider@3.0.28/Rider/Editor
+  - /Users/v.pisarev/Unity Projects/WebView Module/Assets/OPS/Plugins/Json
+  - /Users/v.pisarev/Unity Projects/WebView Module/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.2.1/Runtime
+  - /Users/v.pisarev/Unity Projects/WebView Module/Assets/ExternalDependencyManager/Editor
+  - /Applications/Unity/Hub/Editor/2022.3.22f1/PlaybackEngines/AndroidPlayer/Variations/il2cpp/Managed
+  - Assets/Firebase/Plugins
+  - Assets/OPS/Plugins/Json
+  - /Users/v.pisarev/Unity Projects/WebView Module/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.2.1/Runtime/AOT
+  - /Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api
+  - /Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades
+  - /Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Managed
+
+[Debug][OPS.OBF][Setup] Load Assembly Resolver
+[Info][OPS.OBF][Setup] Prepare Assemblies
+[Info][OPS.OBF][Setup] Process component Unity Animation Methods - Compatibility
+[Info][OPS.OBF][Setup] Process component Unity Event Methods - Compatibility
+[Info][OPS.OBF][Setup] Process component String Reflection and Coroutine - Compatibility
+[Info][OPS.OBF][Setup] Process component Namespace - Settings
+[Info][OPS.OBF][Setup] Process component Class - Obfuscation
+[Info][OPS.OBF][Setup] Process component Type Cache Replacement
+[Info][OPS.OBF][Setup] Process component MonoBehaviour - Class - Obfuscation
+[Info][OPS.OBF][Setup] Process component MonoBehaviour - Class - Subtype Obfuscation
+[Info][OPS.OBF][Setup] Process component ScriptableObject - Class - Obfuscation
+[Info][OPS.OBF][Setup] Process component Playable - Class - Obfuscation
+[Info][OPS.OBF][Setup] Process component Method - Obfuscation
+[Info][OPS.OBF][Setup] Process component Parameter - Obfuscation
+[Info][OPS.OBF][Setup] Process component Field - Obfuscation
+[Info][OPS.OBF][Setup] Process component Property - Obfuscation
+[Info][OPS.OBF][Setup] Process component Event - Obfuscation
+[Info][OPS.OBF][Setup] Process component Attribute - Settings
+[Info][OPS.OBF][Setup] Process component Add Random Code
+[Info][OPS.OBF][Setup] Process component Method ControlFlow
+[Info][OPS.OBF][Setup] Process component String - Obfuscation
+[Info][OPS.OBF][Setup] Process component Suppress ILDasm
+[Info][OPS.OBF][Setup] Process component Tampering - Protection
+[Info][OPS.OBF][Setup] Process component Not Obfuscate Cause
+[Info][OPS.OBF][Setup] Process component Remove Obfuscator Attributes
+[Info][OPS.OBF][Setup] Load Assemblies
+[Debug][OPS.OBF][Setup] Load Cache
+[Debug][OPS.OBF][Setup] Load RenameManager
+[Warning][OPS.OBF][Setup] Failed to load Charset: . Using default! Exception: System.ArgumentException: Must specify valid information for parsing in the string.
+  at System.Enum+EnumResult.SetFailure (System.Enum+ParseFailureKind failure, System.String failureMessageID, System.Object failureMessageFormatArgument) [0x00023] in <b904252b6b4e4277834bcca7e51f318d>:0 
+  at System.Enum.TryParseEnum (System.Type enumType, System.String value, System.Boolean ignoreCase, System.Enum+EnumResult& parseResult) [0x00077] in <b904252b6b4e4277834bcca7e51f318d>:0 
+  at System.Enum.Parse (System.Type enumType, System.String value, System.Boolean ignoreCase) [0x00010] in <b904252b6b4e4277834bcca7e51f318d>:0 
+  at System.Enum.Parse (System.Type enumType, System.String value) [0x00000] in <b904252b6b4e4277834bcca7e51f318d>:0 
+  at OPS.Obfuscator.Editor.Project.PostAssemblyBuild.Pipeline.Component.Optional.RenamingComponent.OnPrePipelineProcess (OPS.Editor.Project.Step.IStepInput _StepInput) [0x00027] in D:\Tim\UnityAssets\Obfuscator\Version_5\Source\OPS.Obfuscator.Editor\OPS.Obfuscator.Editor.Standard\Obfuscation\Project\PostAssemblyBuild\Pipeline\Component\Optional\Renaming\RenamingComponent.cs:200 
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Unity Animation Methods - Compatibility
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Unity Event Methods - Compatibility
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component String Reflection and Coroutine - Compatibility
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Namespace - Settings
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Class - Obfuscation
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Type Cache Replacement
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component MonoBehaviour - Class - Obfuscation
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component MonoBehaviour - Class - Subtype Obfuscation
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component ScriptableObject - Class - Obfuscation
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Playable - Class - Obfuscation
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Method - Obfuscation
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Parameter - Obfuscation
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Field - Obfuscation
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Property - Obfuscation
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Event - Obfuscation
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Attribute - Settings
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Add Random Code
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Method ControlFlow
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component String - Obfuscation
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Suppress ILDasm
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Tampering - Protection
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Not Obfuscate Cause
+[Info][OPS.OBF][OnAnalyse_Assemblies] Process component Remove Obfuscator Attributes
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Unity Animation Methods - Compatibility
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Unity Event Methods - Compatibility
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component String Reflection and Coroutine - Compatibility
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Namespace - Settings
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Class - Obfuscation
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Type Cache Replacement
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component MonoBehaviour - Class - Obfuscation
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component MonoBehaviour - Class - Subtype Obfuscation
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component ScriptableObject - Class - Obfuscation
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Playable - Class - Obfuscation
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Method - Obfuscation
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Parameter - Obfuscation
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Field - Obfuscation
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Property - Obfuscation
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Event - Obfuscation
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Attribute - Settings
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Add Random Code
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Method ControlFlow
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component String - Obfuscation
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Suppress ILDasm
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Tampering - Protection
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Not Obfuscate Cause
+[Info][OPS.OBF][OnPostAnalyse_Assemblies] Process component Remove Obfuscator Attributes
+[Info][OPS.OBF][OnFindMemberNames_Assemblies] Process component Namespace - Settings
+[Info][OPS.OBF][OnFindMemberNames_Assemblies] Process component Class - Obfuscation
+[Info][OPS.OBF][OnFindMemberNames_Assemblies] Process component Method - Obfuscation
+[Info][OPS.OBF][OnFindMemberNames_Assemblies] Process component Field - Obfuscation
+[Info][OPS.OBF][OnFindMemberNames_Assemblies] Process component Property - Obfuscation
+[Info][OPS.OBF][OnFindMemberNames_Assemblies] Process component Event - Obfuscation
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Unity Animation Methods - Compatibility
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Unity Event Methods - Compatibility
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component String Reflection and Coroutine - Compatibility
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Namespace - Settings
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Class - Obfuscation
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Type Cache Replacement
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component MonoBehaviour - Class - Obfuscation
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component MonoBehaviour - Class - Subtype Obfuscation
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component ScriptableObject - Class - Obfuscation
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Playable - Class - Obfuscation
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Method - Obfuscation
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Parameter - Obfuscation
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Field - Obfuscation
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Property - Obfuscation
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Event - Obfuscation
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Attribute - Settings
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Add Random Code
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Method ControlFlow
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component String - Obfuscation
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Suppress ILDasm
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Tampering - Protection
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Not Obfuscate Cause
+[Info][OPS.OBF][OnObfuscate_Assemblies] Process component Remove Obfuscator Attributes
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Unity Animation Methods - Compatibility
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Unity Event Methods - Compatibility
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component String Reflection and Coroutine - Compatibility
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Namespace - Settings
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Class - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Type Cache Replacement
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component MonoBehaviour - Class - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component MonoBehaviour - Class - Subtype Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component ScriptableObject - Class - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Playable - Class - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Method - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Parameter - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Field - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Property - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Event - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Attribute - Settings
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Add Random Code
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Method ControlFlow
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component String - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Suppress ILDasm
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Tampering - Protection
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Not Obfuscate Cause
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Remove Obfuscator Attributes
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Save Assemblies
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Post process Assemblies
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Unity Animation Methods - Compatibility
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Unity Event Methods - Compatibility
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component String Reflection and Coroutine - Compatibility
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Namespace - Settings
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Class - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Type Cache Replacement
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component MonoBehaviour - Class - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component MonoBehaviour - Class - Subtype Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component ScriptableObject - Class - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Playable - Class - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Method - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Parameter - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Field - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Property - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Event - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Attribute - Settings
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Add Random Code
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Method ControlFlow
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component String - Obfuscation
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Suppress ILDasm
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Tampering - Protection
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Not Obfuscate Cause
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Process component Remove Obfuscator Attributes
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Unload
+[Debug][OPS.OBF][OnPostObfuscate_Assemblies] Unload RenameManager
+[Debug][OPS.OBF][OnPostObfuscate_Assemblies] Unload Cache
+[Debug][OPS.OBF][OnPostObfuscate_Assemblies] Unload Assemblies
+[Debug][OPS.OBF][OnPostObfuscate_Assemblies] Unload Assembly Resolver
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Unloaded successfully the AssemblyResolver.
+[Debug][OPS.OBF][OnPostObfuscate_Assemblies] Unload Pipeline
+[Debug][OPS.OBF][OnPostObfuscate_Assemblies] Unload Components
+[Debug][OPS.OBF][OnPostObfuscate_Assemblies] Unload ObfuscatorSettings
+[Debug][OPS.OBF][OnPostObfuscate_Assemblies] Unload DataContainer
+[Info][OPS.OBF][OnPostObfuscate_Assemblies] Finished PostAssemblyBuild!
+[Info][OPS.OBF][Setup] Active Editor Platform: MacEditorPlatform
+[Info][OPS.OBF][Setup] Active Build Platform: DefaultBuildPlatform
+[Info][OPS.OBF][Setup] Start 'PostAssetsBuild' process.
+[Info][OPS.OBF][Setup] Load Project
+[Debug][OPS.OBF][Setup] Load DataContainer
+[Debug][OPS.OBF][Setup] Load Obfuscator Settings
+[Debug][OPS.OBF][Setup] Load Pipeline Components
+[Debug][OPS.OBF][Setup] Found Components (1):
+  - Post Process Unity MonoBehaviour Assets (Post Process Unity MonoBehaviour Assets)
+
+[Debug][OPS.OBF][Setup] Load Pipeline
+[Info][OPS.OBF][OnPostAssetsBuild] Process component Post Process Unity MonoBehaviour Assets
+[Info][OPS.OBF][OnPostAssetsBuild] Unload Project
+[Debug][OPS.OBF][OnPostAssetsBuild] Unload Pipeline
+[Debug][OPS.OBF][OnPostAssetsBuild] Unload Pipeline Components
+[Debug][OPS.OBF][OnPostAssetsBuild] Unload Obfuscator Settings
+[Debug][OPS.OBF][OnPostAssetsBuild] Unload DataContainer
+[Info][OPS.OBF][OnPostAssetsBuild] Finished PostAssetsBuild!

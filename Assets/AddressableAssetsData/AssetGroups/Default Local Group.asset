@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_GUID: 6cc7c108104984013b52ce46928a0ab3
+  m_SerializeEntries:
+  - m_GUID: 2d381d83629fbb14096e0bb31200f5fd
+    m_Address: BonusView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f5cd872cbc4f4679947f6f6bae89743
+    m_Address: SoundService
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e88136a12a42b849968a16af0c6fb02
+    m_Address: GameView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 50404d8061931477eb6aab8a6d8deeee
+    m_Address: RootCanvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 53bf4e4939ff34e60aa1f7a3a18c18d0
+    m_Address: LoadingCurtain
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5fd66de40a4d8c34aad263d43e103862
+    m_Address: MainView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b18f69d92233c497f95cb25890148e04
+    m_Address: RulesView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4eaafb6580bf184bb81dd8cc402b535
+    m_Address: FibonacciView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f18b043db142d684390ab2368fd49671
+    m_Address: RouletteView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8f25e0c331134eff9dc9da11c6a8c10
+    m_Address: GameLifetimeScope
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 13d079f626921455ca0c68ae77e62f73, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ae8b74f33eff942e6893adc259788989, type: 2}
+    - {fileID: 11400000, guid: 72ad3434fc60843dc99cf9b61b62d51f, type: 2}
